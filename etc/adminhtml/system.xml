@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author: Daan van den Bergh
+ * @url: https://daan.dev
+ * @package: Dan0sz/TopMenuProducts
+ * @copyright: (c) 2019 Daan van den Bergh
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="top_menu_products" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Top Menu Products</label>
+            <tab>catalog</tab>
+            <resource>Dan0sz_TopMenuProducts::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="add_items" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add items to Menu</label>
+                    <comment>Choose if top menu products are added before or after the category items.</comment>
+                    <source_model>Dan0sz\TopMenuProducts\Model\Config\General\AddItems</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
