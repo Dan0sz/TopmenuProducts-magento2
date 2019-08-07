@@ -1,0 +1,28 @@
+{
+  "name": "dan0sz/top-menu-products-magento2",
+  "description": "Easily add products to Magento 2's top menu, instead of just categories.",
+  "version": "1.0.0",
+  "require": {
+    "php": "~7.1|~7.2",
+    "ext-openssl": "*",
+    "magento/framework": "101.*|102.*"
+  },
+  "type": "magento2-module",
+  "license": "CC-BY",
+  "authors": [
+    {
+      "name": "Daan van den Bergh",
+      "email": "info@daan.dev",
+      "homepage": "https://daan.dev"
+    }
+  ],
+  "homepage": "https://daan.dev",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Dan0sz\\TopMenuProducts\\": ""
+    }
+  }
+}
