@@ -29,6 +29,8 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Add product to Top Menu?',
             'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
+            'default'    => false,
             'sort_order' => 0
         ],
         'top_menu_product_label'      => [
@@ -36,6 +38,8 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Custom Label',
             'input'      => 'text',
             'source'     => '',
+            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
+            'default'    => '',
             'sort_order' => 10
         ],
         'top_menu_product_sort_order' => [
@@ -43,6 +47,8 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Sort Order',
             'input'      => 'text',
             'source'     => '',
+            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
+            'default'    => false,
             'sort_order' => 20
         ],
         'top_menu_product_is_home'    => [
@@ -50,6 +56,8 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Link to Homepage',
             'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
+            'default'    => false,
             'sort_order' => 30
         ]
     ];
@@ -103,11 +111,11 @@ class UpgradeData implements UpgradeDataInterface
                     'input'                   => $data['input'],
                     'class'                   => '',
                     'source'                  => $data['source'],
-                    'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                    'global'                  => $data['global'],
                     'visible'                 => true,
                     'required'                => false,
                     'user_defined'            => true,
-                    'default'                 => false,
+                    'default'                 => $data['default'],
                     'searchable'              => false,
                     'filterable'              => false,
                     'comparable'              => false,
@@ -134,7 +142,7 @@ class UpgradeData implements UpgradeDataInterface
         $attributeSetIds = $setup->getAllAttributeSetIds($entityTypeId);
 
         foreach ($attributeSetIds as $attributeSetId) {
-            $setup->addAttributeGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL, 777);
+            $setup->addAttributeGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL, 55);
 
             foreach ($this->attributes as $attribute => $data) {
                 $setup->addAttributeToGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL, $attribute, $data['sort_order']);
