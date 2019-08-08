@@ -19,8 +19,6 @@ class UpgradeData implements UpgradeDataInterface
 {
     const ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL = 'Top Menu Products';
 
-    const ATTR_GROUP_TOP_MENU_PRODUCTS = 'top_menu_products';
-
     /** @var EavSetupFactory $eavSetup */
     private $eavSetup;
 
