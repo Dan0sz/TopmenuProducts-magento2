@@ -29,7 +29,7 @@ class UpgradeData implements UpgradeDataInterface
         'top_menu_product_enabled'    => [
             'type'       => 'int',
             'label'      => 'Add product to Top Menu?',
-            'input'      => 'select',
+            'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
             'sort_order' => 0
         ],
@@ -50,7 +50,7 @@ class UpgradeData implements UpgradeDataInterface
         'top_menu_product_is_home'    => [
             'type'       => 'int',
             'label'      => 'Link to Homepage',
-            'input'      => 'select',
+            'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
             'sort_order' => 30
         ]
@@ -108,7 +108,7 @@ class UpgradeData implements UpgradeDataInterface
                     'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                     'visible'                 => true,
                     'required'                => false,
-                    'user_defined'            => false,
+                    'user_defined'            => true,
                     'default'                 => false,
                     'searchable'              => false,
                     'filterable'              => false,
