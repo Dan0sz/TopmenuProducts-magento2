@@ -29,7 +29,6 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Add product to Top Menu?',
             'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
-            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
             'default'    => false,
             'sort_order' => 0
         ],
@@ -38,7 +37,6 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Custom Label',
             'input'      => 'text',
             'source'     => '',
-            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
             'default'    => '',
             'sort_order' => 10
         ],
@@ -47,7 +45,6 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Sort Order',
             'input'      => 'text',
             'source'     => '',
-            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
             'default'    => false,
             'sort_order' => 20
         ],
@@ -56,7 +53,6 @@ class UpgradeData implements UpgradeDataInterface
             'label'      => 'Link to Homepage',
             'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
-            'global'     => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
             'default'    => false,
             'sort_order' => 30
         ]
@@ -111,7 +107,7 @@ class UpgradeData implements UpgradeDataInterface
                     'input'                   => $data['input'],
                     'class'                   => '',
                     'source'                  => $data['source'],
-                    'global'                  => $data['global'],
+                    'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
                     'visible'                 => true,
                     'required'                => false,
                     'user_defined'            => true,
