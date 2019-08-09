@@ -8,6 +8,7 @@
 
 namespace Dan0sz\TopMenuProducts\Setup;
 
+use Dan0sz\TopMenuProducts\Model\Config;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -24,7 +25,7 @@ class UpgradeData implements UpgradeDataInterface
 
     /** @var array $attributes */
     private $attributes = [
-        'top_menu_product_enabled'    => [
+        Config::ATTR_TOP_MENU_PRODUCT_ENABLED    => [
             'type'       => 'int',
             'label'      => 'Add product to Top Menu?',
             'input'      => 'boolean',
@@ -32,7 +33,7 @@ class UpgradeData implements UpgradeDataInterface
             'default'    => false,
             'sort_order' => 0
         ],
-        'top_menu_product_label'      => [
+        Config::ATTR_TOP_MENU_PRODUCT_LABEL      => [
             'type'       => 'varchar',
             'label'      => 'Custom Label',
             'input'      => 'text',
@@ -40,7 +41,7 @@ class UpgradeData implements UpgradeDataInterface
             'default'    => '',
             'sort_order' => 10
         ],
-        'top_menu_product_sort_order' => [
+        Config::ATTR_TOP_MENU_PRODUCT_SORT_ORDER => [
             'type'       => 'int',
             'label'      => 'Sort Order',
             'input'      => 'text',
@@ -48,7 +49,7 @@ class UpgradeData implements UpgradeDataInterface
             'default'    => false,
             'sort_order' => 20
         ],
-        'top_menu_product_is_home'    => [
+        Config::ATTR_TOP_MENU_PRODUCT_IS_HOME    => [
             'type'       => 'int',
             'label'      => 'Link to Homepage',
             'input'      => 'boolean',
@@ -80,9 +81,9 @@ class UpgradeData implements UpgradeDataInterface
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetup->create(['setup' => $setup]);
 
-        $this->addAttributes($eavSetup);
+        $this->createAttributes($eavSetup);
 
-        $this->addAttributeGroup($eavSetup);
+        $this->addToAttributeSets($eavSetup);
 
         $setup->endSetup();
     }
@@ -92,7 +93,7 @@ class UpgradeData implements UpgradeDataInterface
      *
      * @return EavSetup
      */
-    private function addAttributes(EavSetup $setup)
+    private function createAttributes(EavSetup $setup)
     {
         foreach ($this->attributes as $attribute => $data) {
             $setup->addAttribute(
@@ -132,7 +133,7 @@ class UpgradeData implements UpgradeDataInterface
      * @return EavSetup
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    private function addAttributeGroup(EavSetup $setup)
+    private function addToAttributeSets(EavSetup $setup)
     {
         $entityTypeId    = $setup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
         $attributeSetIds = $setup->getAllAttributeSetIds($entityTypeId);
