@@ -9,6 +9,7 @@
 namespace Dan0sz\TopMenuProducts\Observer;
 
 use Dan0sz\TopMenuProducts\Model\Config;
+use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\App\Request\Http;
@@ -94,8 +95,6 @@ class GetHtmlBefore implements ObserverInterface
     private function addProductsToMenu(ProductCollection $products, Node $menu)
     {
         foreach ($products as $product) {
-            $nodeId = 'product-node-' . $product->getId();
-
             $node = new Node(
                 $this->getProductAsArray($product),
                 'id',
@@ -108,12 +107,12 @@ class GetHtmlBefore implements ObserverInterface
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product $product
+     * @param Product $product
      *
      * @return array
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    private function getProductAsArray(\Magento\Catalog\Model\Product $product)
+    private function getProductAsArray(Product $product)
     {
         return [
             'name'             => $product->getData(Config::ATTR_TOP_MENU_PRODUCT_LABEL) ?: $product->getName(),
@@ -127,12 +126,12 @@ class GetHtmlBefore implements ObserverInterface
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product $product
+     * @param Product $product
      *
      * @return string
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    private function getTopMenuProductUrl(\Magento\Catalog\Model\Product $product)
+    private function getTopMenuProductUrl(Product $product)
     {
         /** @var \Magento\Store\Model\Store $store */
         $store = $this->storeManager->getStore();
@@ -141,11 +140,11 @@ class GetHtmlBefore implements ObserverInterface
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product $product
+     * @param Product $product
      *
      * @return bool
      */
-    private function checkIsActive(\Magento\Catalog\Model\Product $product)
+    private function checkIsActive(Product $product)
     {
         return $product->getId() == $this->request->getParam('id');
     }
