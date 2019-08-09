@@ -16,6 +16,9 @@
       "homepage": "https://daan.dev"
     }
   ],
+  "support": {
+    "issues": "https://github.com/Dan0sz/TopMenuProducts-magento2/issues/"
+  },
   "homepage": "https://daan.dev",
   "autoload": {
     "files": [
