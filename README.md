@@ -35,7 +35,7 @@ If you can't or dont want to use Composer, you can download the `master`-branch 
 
 - Run `bin/magento setup:upgrade`
 - Run `bin/magento setup:di:compile`
-- Run `bin/magento setup:static-content:deploy [locales e.g. en_US nl_NL`
+- Run `bin/magento setup:static-content:deploy [locales e.g. en_US nl_NL]`
 - Done!
 
 ## Configuration
