@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Easily add products to Magento 2's topmenu, instead of just categories.",
   "author": "Dan0sz",
-  "license": "CC-BY",
+  "license": "CC-BY-4.0",
   "homepage": "https://daan.dev/"
 }
