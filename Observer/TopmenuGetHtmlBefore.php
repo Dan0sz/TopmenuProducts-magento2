@@ -21,6 +21,9 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class TopmenuGetHtmlBefore implements ObserverInterface
 {
+    /** @var Config $config */
+    private $config;
+
     /** @var ProductCollection $productCollection */
     private $productCollection;
 
@@ -41,10 +44,12 @@ class TopmenuGetHtmlBefore implements ObserverInterface
      * @param StoreManagerInterface    $storeManager
      */
     public function __construct(
+        Config $config,
         ProductCollectionFactory $productCollection,
         NodeFactory $node,
         StoreManagerInterface $storeManager
     ) {
+        $this->config            = $config;
         $this->productCollection = $productCollection;
         $this->node              = $node;
         $this->storeManager      = $storeManager;
@@ -59,7 +64,7 @@ class TopmenuGetHtmlBefore implements ObserverInterface
     public function execute(Observer $observer)
     {
         /** @var Node $menu */
-        $menu          = $observer->getData('menu');
+        $menu = $observer->getData('menu');
         /** @var Request request */
         $this->request = $observer->getData('request');
         $products      = $this->getTopmenuProducts();
@@ -87,10 +92,8 @@ class TopmenuGetHtmlBefore implements ObserverInterface
                 Config::ATTR_TOPMENU_PRODUCT_IS_HOME
             ]
         );
-        $productCollection->addAttributeToFilter(
-            Config::ATTR_TOPMENU_PRODUCT_ENABLED,
-            ['eq' => 1]
-        );
+        $productCollection
+            ->addAttributeToFilter(Config::ATTR_TOPMENU_PRODUCT_ENABLED, ['eq' => 1]);
         $productCollection->addAttributeToSort(Config::ATTR_TOPMENU_PRODUCT_SORT_ORDER);
 
         return $productCollection;
@@ -104,15 +107,31 @@ class TopmenuGetHtmlBefore implements ObserverInterface
      */
     private function addProductsToMenu(ProductCollection $products, Node $menu)
     {
+        $addItems = $this->config->getConfigValue(Config::XPATH_TOPMENU_PRODUCTS_GENERAL_ADD_ITEMS);
+
+        if ($addItems == 'before') {
+            $categories = $menu->getChildren()->getNodes();
+
+            foreach ($categories as $category) {
+                $menu->removeChild($category);
+            }
+        }
+
         foreach ($products as $product) {
             $node = $this->node->create(
                 [
-                    'data' => $this->getProductAsArray($product),
+                    'data'    => $this->getProductAsArray($product),
                     'idField' => 'id',
-                    'tree' => $menu->getTree()
+                    'tree'    => $menu->getTree()
                 ]
             );
             $menu->addChild($node);
+        }
+
+        if ($addItems == 'before') {
+            foreach ($categories as $category) {
+                $menu->addChild($category);
+            }
         }
     }
 
