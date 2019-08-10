@@ -2,13 +2,13 @@
 /**
  * @author   : Daan van den Bergh
  * @url      : https://daan.dev
- * @package  : Dan0sz/TopMenuProducts
+ * @package  : Dan0sz/TopmenuProducts
  * @copyright: (c) 2019 Daan van den Bergh
  */
 
-namespace Dan0sz\TopMenuProducts\Observer;
+namespace Dan0sz\TopmenuProducts\Observer;
 
-use Dan0sz\TopMenuProducts\Model\Config;
+use Dan0sz\TopmenuProducts\Model\Config;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
@@ -18,7 +18,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
-class GetHtmlBefore implements ObserverInterface
+class TopmenuGetHtmlBefore implements ObserverInterface
 {
     /** @var ProductCollection $productCollection */
     private $productCollection;
@@ -54,7 +54,7 @@ class GetHtmlBefore implements ObserverInterface
         $menu          = $observer->getData('menu');
         /** @var Http request */
         $this->request = $observer->getData('request');
-        $products      = $this->getTopMenuProducts();
+        $products      = $this->getTopmenuProducts();
         $this->addProductsToMenu($products, $menu);
 
         return $this;
@@ -63,7 +63,7 @@ class GetHtmlBefore implements ObserverInterface
     /**
      * @return ProductCollection
      */
-    private function getTopMenuProducts()
+    private function getTopmenuProducts()
     {
         /** @var ProductCollection $productCollection */
         $productCollection = $this->productCollection->create();

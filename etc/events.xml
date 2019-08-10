@@ -9,6 +9,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="page_block_html_topmenu_gethtml_before">
-        <observer name="dan0sz_top_menu_products_gethtml_before" instance="Dan0sz\TopMenuProducts\Observer\GetHtmlBefore" />
+        <observer name="dan0sz_top_menu_products_gethtml_before" instance="Dan0sz\TopMenuProducts\Observer\TopmenuGetHtmlBefore" />
     </event>
 </config>

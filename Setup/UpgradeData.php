@@ -2,13 +2,13 @@
 /**
  * @author   : Daan van den Bergh
  * @url      : https://daan.dev
- * @package  : Dan0sz/TopMenuProducts
+ * @package  : Dan0sz/TopmenuProducts
  * @copyright: (c) 2019 Daan van den Bergh
  */
 
-namespace Dan0sz\TopMenuProducts\Setup;
+namespace Dan0sz\TopmenuProducts\Setup;
 
-use Dan0sz\TopMenuProducts\Model\Config;
+use Dan0sz\TopmenuProducts\Model\Config;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;

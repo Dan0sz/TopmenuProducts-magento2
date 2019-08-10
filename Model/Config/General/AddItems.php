@@ -2,11 +2,11 @@
 /**
  * @author: Daan van den Bergh
  * @url: https://daan.dev
- * @package: Dan0sz/TopMenuProducts
+ * @package: Dan0sz/TopmenuProducts
  * @copyright: (c) 2019 Daan van den Bergh
  */
 
-namespace Dan0sz\TopMenuProducts\Model\Config\General;
+namespace Dan0sz\TopmenuProducts\Model\Config\General;
 
 use Magento\Framework\Option\ArrayInterface;
 
