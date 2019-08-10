@@ -117,7 +117,7 @@ class TopmenuGetHtmlBefore implements ObserverInterface
         return [
             'name'             => $product->getData(Config::ATTR_TOPMENU_PRODUCT_LABEL) ?: $product->getName(),
             'id'               => 'product-node-' . $product->getId(),
-            'url'              => $this->getTopMenuProductUrl($product),
+            'url'              => $this->getTopmenuProductUrl($product),
             'has_active'       => false,
             'is_active'        => $this->checkIsActive($product),
             'is_category'      => false,
@@ -131,7 +131,7 @@ class TopmenuGetHtmlBefore implements ObserverInterface
      * @return string
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    private function getTopMenuProductUrl(Product $product)
+    private function getTopmenuProductUrl(Product $product)
     {
         /** @var \Magento\Store\Model\Store $store */
         $store = $this->storeManager->getStore();

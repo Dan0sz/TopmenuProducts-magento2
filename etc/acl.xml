@@ -3,7 +3,7 @@
 /**
  * @author: Daan van den Bergh
  * @url: https://daan.dev
- * @package: Dan0sz/TopMenuProducts
+ * @package: Dan0sz/TopmenuProducts
  * @copyright: (c) 2019 Daan van den Bergh
  */
 -->
@@ -14,7 +14,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config" title="Configuration" sortOrder="20">
-                            <resource id="Dan0sz_TopMenuProducts::configuration" title="Top Menu Products" sortOrder="1" />
+                            <resource id="Dan0sz_TopmenuProducts::configuration" title="Topmenu Products" sortOrder="1" />
                         </resource>
                     </resource>
                 </resource>

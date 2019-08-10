@@ -3,14 +3,14 @@
 /**
  * @author: Daan van den Bergh
  * @url: https://daan.dev
- * @package: Dan0sz/TopMenuProducts
+ * @package: Dan0sz/TopmenuProducts
  * @copyright: (c) 2019 Daan van den Bergh
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="top_menu_products" frontName="top_menu_products">
-            <module before="Magento_Backend" name="Dan0sz_TopMenuProducts" />
+            <module before="Magento_Backend" name="Dan0sz_TopmenuProducts" />
         </route>
     </router>
 </config>

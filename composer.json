@@ -17,7 +17,7 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/Dan0sz/TopMenuProducts-magento2/issues/"
+    "issues": "https://github.com/Dan0sz/TopmenuProducts-magento2/issues/"
   },
   "homepage": "https://daan.dev",
   "autoload": {
@@ -25,7 +25,7 @@
       "registration.php"
     ],
     "psr-4": {
-      "Dan0sz\\TopMenuProducts\\": ""
+      "Dan0sz\\TopmenuProducts\\": ""
     }
   }
 }

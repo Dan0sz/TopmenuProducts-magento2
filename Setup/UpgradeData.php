@@ -18,16 +18,16 @@ use Magento\Framework\Setup\UpgradeDataInterface;
 // @codingStandardsIgnoreFile
 class UpgradeData implements UpgradeDataInterface
 {
-    const ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL = 'Top Menu Products';
+    const ATTR_GROUP_TOPMENU_PRODUCTS_LABEL = 'Topmenu Products';
 
-    /** @var EavSetupFactory $eavSetup */
+    /** @var EavSetup $eavSetup */
     private $eavSetup;
 
     /** @var array $attributes */
     private $attributes = [
         Config::ATTR_TOPMENU_PRODUCT_ENABLED    => [
             'type'       => 'int',
-            'label'      => 'Add product to Top Menu?',
+            'label'      => 'Add product to Topmenu?',
             'input'      => 'boolean',
             'source'     => '\Magento\Eav\Model\Entity\Attribute\Source\Boolean',
             'default'    => false,
@@ -100,7 +100,7 @@ class UpgradeData implements UpgradeDataInterface
                 \Magento\Catalog\Model\Product::ENTITY,
                 $attribute,
                 [
-                    'group'                   => self::ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL,
+                    'group'                   => self::ATTR_GROUP_TOPMENU_PRODUCTS_LABEL,
                     'type'                    => $data['type'],
                     'backend'                 => '',
                     'frontend'                => '',
@@ -139,10 +139,10 @@ class UpgradeData implements UpgradeDataInterface
         $attributeSetIds = $setup->getAllAttributeSetIds($entityTypeId);
 
         foreach ($attributeSetIds as $attributeSetId) {
-            $setup->addAttributeGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL, 55);
+            $setup->addAttributeGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOPMENU_PRODUCTS_LABEL, 55);
 
             foreach ($this->attributes as $attribute => $data) {
-                $setup->addAttributeToGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOP_MENU_PRODUCTS_LABEL, $attribute, $data['sort_order']);
+                $setup->addAttributeToGroup($entityTypeId, $attributeSetId, self::ATTR_GROUP_TOPMENU_PRODUCTS_LABEL, $attribute, $data['sort_order']);
             }
         }
 
