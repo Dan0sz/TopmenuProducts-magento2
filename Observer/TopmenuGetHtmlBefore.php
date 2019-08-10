@@ -12,8 +12,9 @@ use Dan0sz\TopmenuProducts\Model\Config;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
-use Magento\Framework\App\Request\Http;
+use Magento\Framework\App\Request\Http as Request;
 use Magento\Framework\Data\Tree\Node;
+use Magento\Framework\Data\Tree\NodeFactory;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -23,23 +24,29 @@ class TopmenuGetHtmlBefore implements ObserverInterface
     /** @var ProductCollection $productCollection */
     private $productCollection;
 
+    /** @var Node $node */
+    private $node;
+
     /** @var StoreManagerInterface $storeManager */
     private $storeManager;
 
-    /** @var Http $request */
+    /** @var Request $request */
     private $request;
 
     /**
-     * GetHtmlBefore constructor.
+     * TopmenuGetHtmlBefore constructor.
      *
      * @param ProductCollectionFactory $productCollection
+     * @param NodeFactory              $node
      * @param StoreManagerInterface    $storeManager
      */
     public function __construct(
         ProductCollectionFactory $productCollection,
+        NodeFactory $node,
         StoreManagerInterface $storeManager
     ) {
         $this->productCollection = $productCollection;
+        $this->node              = $node;
         $this->storeManager      = $storeManager;
     }
 
@@ -49,10 +56,11 @@ class TopmenuGetHtmlBefore implements ObserverInterface
      * @return $this|void
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function execute(Observer $observer) {
+    public function execute(Observer $observer)
+    {
         /** @var Node $menu */
         $menu          = $observer->getData('menu');
-        /** @var Http request */
+        /** @var Request request */
         $this->request = $observer->getData('request');
         $products      = $this->getTopmenuProducts();
         $this->addProductsToMenu($products, $menu);
@@ -80,8 +88,10 @@ class TopmenuGetHtmlBefore implements ObserverInterface
             ]
         );
         $productCollection->addAttributeToFilter(
-            Config::ATTR_TOPMENU_PRODUCT_ENABLED, ['eq' => 1]
+            Config::ATTR_TOPMENU_PRODUCT_ENABLED,
+            ['eq' => 1]
         );
+        $productCollection->addAttributeToSort(Config::ATTR_TOPMENU_PRODUCT_SORT_ORDER);
 
         return $productCollection;
     }
@@ -95,13 +105,13 @@ class TopmenuGetHtmlBefore implements ObserverInterface
     private function addProductsToMenu(ProductCollection $products, Node $menu)
     {
         foreach ($products as $product) {
-            $node = new Node(
-                $this->getProductAsArray($product),
-                'id',
-                $menu->getTree(),
-                $menu
+            $node = $this->node->create(
+                [
+                    'data' => $this->getProductAsArray($product),
+                    'idField' => 'id',
+                    'tree' => $menu->getTree()
+                ]
             );
-
             $menu->addChild($node);
         }
     }
@@ -136,7 +146,8 @@ class TopmenuGetHtmlBefore implements ObserverInterface
         /** @var \Magento\Store\Model\Store $store */
         $store = $this->storeManager->getStore();
 
-        return $product->getData(Config::ATTR_TOPMENU_PRODUCT_IS_HOME) ? $store->getBaseUrl() : $product->getProductUrl();
+        return $product->getData(Config::ATTR_TOPMENU_PRODUCT_IS_HOME) ?
+            $store->getBaseUrl() : $product->getProductUrl();
     }
 
     /**
