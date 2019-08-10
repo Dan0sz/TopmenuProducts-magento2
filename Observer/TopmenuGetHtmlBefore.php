@@ -73,14 +73,14 @@ class TopmenuGetHtmlBefore implements ObserverInterface
                 'entity_id',
                 'name',
                 'url_key',
-                Config::ATTR_TOP_MENU_PRODUCT_ENABLED,
-                Config::ATTR_TOP_MENU_PRODUCT_LABEL,
-                Config::ATTR_TOP_MENU_PRODUCT_SORT_ORDER,
-                Config::ATTR_TOP_MENU_PRODUCT_IS_HOME
+                Config::ATTR_TOPMENU_PRODUCT_ENABLED,
+                Config::ATTR_TOPMENU_PRODUCT_LABEL,
+                Config::ATTR_TOPMENU_PRODUCT_SORT_ORDER,
+                Config::ATTR_TOPMENU_PRODUCT_IS_HOME
             ]
         );
         $productCollection->addAttributeToFilter(
-            Config::ATTR_TOP_MENU_PRODUCT_ENABLED, ['eq' => 1]
+            Config::ATTR_TOPMENU_PRODUCT_ENABLED, ['eq' => 1]
         );
 
         return $productCollection;
@@ -115,7 +115,7 @@ class TopmenuGetHtmlBefore implements ObserverInterface
     private function getProductAsArray(Product $product)
     {
         return [
-            'name'             => $product->getData(Config::ATTR_TOP_MENU_PRODUCT_LABEL) ?: $product->getName(),
+            'name'             => $product->getData(Config::ATTR_TOPMENU_PRODUCT_LABEL) ?: $product->getName(),
             'id'               => 'product-node-' . $product->getId(),
             'url'              => $this->getTopMenuProductUrl($product),
             'has_active'       => false,
@@ -136,7 +136,7 @@ class TopmenuGetHtmlBefore implements ObserverInterface
         /** @var \Magento\Store\Model\Store $store */
         $store = $this->storeManager->getStore();
 
-        return $product->getData(Config::ATTR_TOP_MENU_PRODUCT_IS_HOME) ? $store->getBaseUrl() : $product->getProductUrl();
+        return $product->getData(Config::ATTR_TOPMENU_PRODUCT_IS_HOME) ? $store->getBaseUrl() : $product->getProductUrl();
     }
 
     /**

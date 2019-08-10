@@ -12,11 +12,11 @@ use Magento\Catalog\Model\AbstractModel;
 
 class Config extends AbstractModel
 {
-    const ATTR_TOP_MENU_PRODUCT_ENABLED    = 'topmenu_product_enabled';
+    const ATTR_TOPMENU_PRODUCT_ENABLED    = 'topmenu_product_enabled';
 
-    const ATTR_TOP_MENU_PRODUCT_LABEL      = 'topmenu_product_label';
+    const ATTR_TOPMENU_PRODUCT_LABEL      = 'topmenu_product_label';
 
-    const ATTR_TOP_MENU_PRODUCT_SORT_ORDER = 'topmenu_product_sort_order';
+    const ATTR_TOPMENU_PRODUCT_SORT_ORDER = 'topmenu_product_sort_order';
 
-    const ATTR_TOP_MENU_PRODUCT_IS_HOME    = 'topmenu_product_is_home';
+    const ATTR_TOPMENU_PRODUCT_IS_HOME    = 'topmenu_product_is_home';
 }

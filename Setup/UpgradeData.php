@@ -25,7 +25,7 @@ class UpgradeData implements UpgradeDataInterface
 
     /** @var array $attributes */
     private $attributes = [
-        Config::ATTR_TOP_MENU_PRODUCT_ENABLED    => [
+        Config::ATTR_TOPMENU_PRODUCT_ENABLED    => [
             'type'       => 'int',
             'label'      => 'Add product to Top Menu?',
             'input'      => 'boolean',
@@ -33,7 +33,7 @@ class UpgradeData implements UpgradeDataInterface
             'default'    => false,
             'sort_order' => 0
         ],
-        Config::ATTR_TOP_MENU_PRODUCT_LABEL      => [
+        Config::ATTR_TOPMENU_PRODUCT_LABEL      => [
             'type'       => 'varchar',
             'label'      => 'Custom Label',
             'input'      => 'text',
@@ -41,7 +41,7 @@ class UpgradeData implements UpgradeDataInterface
             'default'    => '',
             'sort_order' => 10
         ],
-        Config::ATTR_TOP_MENU_PRODUCT_SORT_ORDER => [
+        Config::ATTR_TOPMENU_PRODUCT_SORT_ORDER => [
             'type'       => 'int',
             'label'      => 'Sort Order',
             'input'      => 'text',
@@ -49,7 +49,7 @@ class UpgradeData implements UpgradeDataInterface
             'default'    => false,
             'sort_order' => 20
         ],
-        Config::ATTR_TOP_MENU_PRODUCT_IS_HOME    => [
+        Config::ATTR_TOPMENU_PRODUCT_IS_HOME    => [
             'type'       => 'int',
             'label'      => 'Link to Homepage',
             'input'      => 'boolean',
